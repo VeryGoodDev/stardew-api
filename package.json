@@ -1,0 +1,22 @@
+{
+  "name": "stardew-api",
+  "description": "An API to provide various data about Stardew Valley. Currently planned to be used via REST endpoints and GraphQL",
+  "version": "0.1.0",
+  "author": "VeryGoodDev <very_good_dev@outlook.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "^16.14.2"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.cjs",
+    "serve": "node dist/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.38",
+    "@vgd/esbuild-util": "^0.3.1",
+    "@vgd/eslint-config-personal": "^0.10.0",
+    "eslint": "^8.16.0",
+    "typescript": "^4.7.2"
+  }
+}
