@@ -1,0 +1,112 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Prisma stuff
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DB_CONNECTION_URL")
+}
+
+// Enums and types
+enum ItemCategory {
+  ANIMAL_PRODUCT
+  ARTISAN_GOOD
+  COOKED_DISH
+  EQUIPMENT
+  FISH
+  FLOWER
+  FORAGABLE
+  FRUIT
+  MINERAL
+  OTHER
+  TOOL
+  VEGETABLE
+  WEAPON
+}
+
+enum Location {
+  BACKWOODS
+  BEACH
+  BUS_STOP
+  CALICO_DESERT
+  CINDERSAP_FOREST
+  FARM
+  GINGER_ISLAND
+  MINES
+  MOUNTAIN
+  MUTANT_BUG_LAIR
+  PELICAN_TOWN
+  QUARRY
+  QUARRY_MINE
+  RAILROAD
+  SECRET_WOODS
+  SEWERS
+  SKULL_CAVERN
+  VOLCANO_DUNGEON
+  WITCH_SWAMP
+}
+
+enum Shop {
+  ADVENTURER_GUILD
+  BLACKSMITH
+  CARPENTER
+  CASINO
+  CLINIC
+  DESERT_TRADER
+  FISH_SHOP
+  GENERAL_STORE
+  HAT_MOUSE
+  ICE_CREAM_STAND
+  ISLAND_TRADER
+  JOJAMART
+  MINES_DWARF
+  OASIS
+  RANCH
+  STARDROP_SALOON
+  TRAVELING_CART
+  VOLCANO_DWARF
+  WALNUT_ROOM
+  WIZARD_TOWER
+}
+
+type BuyingInfo {
+  price Int
+  shop  Shop
+}
+
+type SellingInfo {
+  normalPrice  Int
+  silverPrice  Int
+  goldPrice    Int
+  iridiumPrice Int
+  shops        Shop[]
+}
+
+// Data models
+model Item {
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  category    ItemCategory? @default(OTHER)
+  canShip     Boolean
+  sellingInfo SellingInfo?
+  buyingInfo  BuyingInfo?
+}
+
+model Villager {
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  marriage Boolean
+  livesIn  Location
+  address  String
+  family   Villager[] @relation("FamilyMember")
+  friends  Villager[] @relation("Friend")
+
+  // Used to enable one-to-many relationship between villagers
+  villagerId   String?   @db.ObjectId
+  familyMember Villager? @relation("FamilyMember", fields: [villagerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  friend       Villager? @relation("Friend", fields: [villagerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}

@@ -5,6 +5,7 @@ specifiers:
   '@vgd/esbuild-util': ^0.3.1
   '@vgd/eslint-config-personal': ^0.10.0
   eslint: ^8.16.0
+  prisma: ^3.14.0
   typescript: ^4.7.2
 
 devDependencies:
@@ -12,6 +13,7 @@ devDependencies:
   '@vgd/esbuild-util': 0.3.1
   '@vgd/eslint-config-personal': 0.10.0_xztl6dhthcahlo6akmb2bmjmle
   eslint: 8.16.0
+  prisma: 3.14.0
   typescript: 4.7.2
 
 packages:
@@ -82,6 +84,11 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
+    dev: true
+
+  /@prisma/engines/3.14.0-36.2b0c12756921c891fec4f68d9444e18c7d5d4a6a:
+    resolution: {integrity: sha512-LwZvI3FY6f43xFjQNRuE10JM5R8vJzFTSmbV9X0Wuhv9kscLkjRlZt0BEoiHmO+2HA3B3xxbMfB5du7ZoSFXGg==}
+    requiresBuild: true
     dev: true
 
   /@types/json-schema/7.0.11:
@@ -1749,6 +1756,15 @@ packages:
     resolution: {integrity: sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==}
     engines: {node: '>=10.13.0'}
     hasBin: true
+    dev: true
+
+  /prisma/3.14.0:
+    resolution: {integrity: sha512-l9MOgNCn/paDE+i1K2fp9NZ+Du4trzPTJsGkaQHVBufTGqzoYHuNk8JfzXuIn0Gte6/ZjyKj652Jq/Lc1tp2yw==}
+    engines: {node: '>=12.6'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 3.14.0-36.2b0c12756921c891fec4f68d9444e18c7d5d4a6a
     dev: true
 
   /prop-types/15.8.1:
